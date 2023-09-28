@@ -1,3 +1,7 @@
 /out
 .DS_Store
 app.js
+.vscode
+node_modules
+package-lock.json
+package.json

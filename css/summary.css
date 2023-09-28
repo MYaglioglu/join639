@@ -144,7 +144,7 @@ body {
     margin: 0;
     width: 274px;
     height: 40px;
-    font-size: 33px;
+    font-size: 28px;
     font-weight: bold;
 }
 
@@ -449,9 +449,9 @@ body {
 
 
 @media(max-width: 428px) {
-    /* .mobile {
+    .mobile {
         transform: scale(0.7);
-    } */
+    }
 
     .summery-container {
         padding-top: 64px;

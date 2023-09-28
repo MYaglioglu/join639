@@ -15,74 +15,41 @@
     <script src="./js/contact_templates.js"></script>
     <script src="./js/contact.js"></script>
     <script src="./js/storage.js"></script>
+    <script src="./js/templates/contact_templates.js"></script>
 </head>
 
 <body onload="init(), initContact()">
     <div w3-include-html="./templates/header.html"></div>
     <div w3-include-html="./templates/aside.html"></div>
 
+    <div class="background-overlay"></div>
     <div class="all-content">
         <div class="container">
             <button id="addContactBtn" onclick="openModal()" class="add-person-button">
-                <div class="add-person-text">Add new contact</div>
-                <div><img src="./img/person_add.svg"></div>
+                <p class="addContactBtnText"> Add new contact </p>
+                <img src="./img/person_add.svg" class="button-icon">
             </button>
             <div class="container-contact-all">
                 <div id="container-letter" class="container-letters"></div>
+                <div class="underlineLetters"></div>
             </div>
         </div>
         <div id="contact-details" class="contact-details">
             <!-- Hier werden die Kontaktinformationen angezeigt -->
         </div>
     </div>
+    
     <!-- Hier der Screen um ein Contact einzufügen -->
-    <div id="contactModal" class="modal">
-        <div class="modal-content">
+    <div id="contactModal" class="modal"></div>
 
-            <div class="modal-content-top">
-                <div class="close" onclick="closeModal()">&times;</div>
-                <div class="modal-logo"><img src="./img/join_logo.png"></div>
-                <div class="modal-headline">Add contact</div>
-                <div class="modal-text">Tasks are better with a team!</div>
-            </div>
-            <div class="modal-input-container">
-                <div class="modal-input-img">
-                    <img src="./img/person.png">
-                </div>
-                <div class="modal-input-row">
-                    <div class="modal-input-frame">
-                            <input class="modal-input-field" required type="text" id="fullName" placeholder="Name">
-                            <img class="modal-input-icon" src="img/person.png" alt="Name"> 
-                    </div>
+    <div id="editModal" class="edit-modal"></div>
+    <div id="editMobileModal" class="edit-Modal-Mobile"></div>
 
-                    <div class="modal-input-frame">
-                        <input class="modal-input-field" required type="email" id="newEmail" name="email" autocomplete="email"
-                            placeholder="Email">
-                        <img class="modal-input-icon" src="img/mail.png" alt="Email">
-                    </div>
-                    <div class="modal-input-frame">
-                        <input class="modal-input-field" required type="email" id="newTelefon" placeholder="Phone">
-                        <img class="modal-input-icon" src="img/call.svg" alt="Phone">
-                    </div>
-                </div>
-                <div class="add-contact-buttons">
-                    <div class="add-contact-buttons-inner">
-                        <button onclick="closeModal()" class="button-clear">
-                            <div class="button-clear-text"> Clear </div>
-                            <div class="button-clear-pic"> <img src="./img/cancel-icon.svg"></div>
-                        </button>
-                        <button id="saveContactBtn" class="button-create-task" onclick="saveNewContact()">
-                            <div class="button-create-task-text "> Save </div>
-                            <div class="button-create-task-pic"> <img src="./img/check.svg"></div>
-                        </button>
-                    </div>
-                </div>
-            </div>
+    <!-- Container für die Kontaktliste -->
+    <div id="contact-list-container"></div>
 
-
-        </div>
-    </div>
-
+    <!-- Container für die Kontaktinformationen (Mobile) -->
+    <div id="contact-details-mobile" class="contact-details-mobile-class" style="display:none;"></div>
 
 
     <script src="./js/includeHTML.js"></script>

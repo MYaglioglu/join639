@@ -78,9 +78,8 @@ header {
     z-index: 2;
 }
 
-.initals {
+.initials {
     width: 28px;
-    height: 15px;
     flex-shrink: 0;
     color: #005DFF;
     z-index: 5;
@@ -114,6 +113,10 @@ header {
     z-index: 4;
     border: 3px solid white;
     border-radius: 50%;
+}
+
+.user-initials:hover {
+    background-color: #B5DBFF;
 }
 
 #logoutBtn {

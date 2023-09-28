@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,17 +10,26 @@
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/fonts.css">
+    <link rel="stylesheet" href="./css/edit_add_task.css">
+    <link rel="stylesheet" href="./css/contact.css">
+    <link rel="stylesheet" href="./css/add_task.css">
     <script src="./js/includeHTML.js"></script>
     <script src="./js/ui_helpers.js"></script>
     <script src="./js/app.js"></script>
     <script src="./js/storage.js"></script>
     <script src="./js/board.js"></script>
-    <script src="./js/board_templates.js"></script>
+    <script src="./js/board_2.js"></script>
+    <script src="./js/edit_task.js"></script>
+    <script src="./js/edit_task_2.js"></script>
+    <script src="./js/contact.js"></script>
+    <script src="./js/DragDropTouch.js"></script>
+    <script src="./js/templates/board_templates.js"></script>
+    <script src="./js/templates/contact_templates.js"></script>
     <link rel="icon" type="image/png" href="./img/join_logo_blue.png">
 </head>
-<body onload="init(), updateHTML()">
+<body id="noscroll" onload="init(), updateHTML(), initAddTask()">
     <div w3-include-html="./templates/board_slide.html"></div>
-    <!-- <div w3-include-html="./templates/add_task_slide.html"></div> -->
+    <div w3-include-html="./templates/edit_task_slide.html"></div>
     <div w3-include-html="./templates/header.html"></div>
     <div w3-include-html="./templates/aside.html"></div>
     <div class="search-add-task">
@@ -31,32 +41,33 @@
                     <img id="search" class="icon" onclick="setFilter()" src="./img/search.png" alt="Lupe">
                 </div>
             </div>
-            <button class="add-btn">Add Task<img class="plus-icon" src="./img/plus.png" alt="Plus"></button>
+            <button onclick="addTask()" class="add-btn">Add Task<img class="plus-icon" src="./img/plus.png"
+                    alt="Plus"></button>
         </div>
     </div>
     <div class="board-container">
         <div class="task-container">
             <div class="board-headline">
                 <span>To do</span>
-                <button class="board-add-btn"><img src="./img/plus-blue.png" alt="Plus"></button>
+                <button onclick="addTask()" class="board-add-btn"><img src="./img/plus-blue.png" alt="Plus"></button>
             </div>
-            <div class="drag-area" id="todo" ondrop="moveTo('todo')" ondragover="allowDrop(event)"></div>
+            <div class="drag-area todo-touch" id="todo" data-status="todo" ondrop="moveTo('todo')" ondragover="allowDrop(event)"></div>
         </div>
         <div class="task-container">
             <div class="board-headline">
                 <span>In progress</span>
-                <button class="board-add-btn"><img src="./img/plus-blue.png" alt="Plus"></button>
+                <button onclick="addTask()" class="board-add-btn"><img src="./img/plus-blue.png" alt="Plus"></button>
             </div>
-            <div class="drag-area" id="in-progress" ondrop="moveTo('inprogress')" ondragover="allowDrop(event)">
+            <div class="drag-area in-progress-touch" id="in-progress" data-status="inprogress" ondrop="moveTo('inprogress')" ondragover="allowDrop(event)">
                 
             </div>
         </div>
         <div class="task-container">
             <div class="board-headline">
                 <span>Await feedback</span>
-                <button class="board-add-btn"><img src="./img/plus-blue.png" alt="Plus"></button>
+                <button onclick="addTask()" class="board-add-btn"><img src="./img/plus-blue.png" alt="Plus"></button>
             </div>
-            <div class="drag-area" id="feedback" ondrop="moveTo('feedback')" ondragover="allowDrop(event)">
+            <div class="drag-area feedback-touch" id="feedback" data-status="feedback" ondrop="moveTo('feedback')" ondragover="allowDrop(event)">
                 
             </div>
         </div>
@@ -64,13 +75,21 @@
             <div class="board-headline">
                 <span>Done</span>
             </div>
-            <div class="drag-area" id="done" ondrop="moveTo('done')" ondragover="allowDrop(event)">
+            <div class="drag-area done-touch" id="done" data-status="done" ondrop="moveTo('done')" ondragover="allowDrop(event)">
                 
             </div>
         </div>
     </div>
-    
-    
-    
+
+    <div id="contactModal" class="modal"></div>
+    <form id="taskFormSlider"></form>
+    <div class="background-overlay"></div>
+
+
+    <script src="./js/add_add_task.js"></script>
+    <script src="./js/add_add_task_ui.js"></script>
+    <script src="./js/templates/add_task_templates.js"></script>
+    <script src="./js/add_add_task_utils.js"></script>
 </body>
+
 </html>
