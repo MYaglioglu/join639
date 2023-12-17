@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my notepad</title>
+    <link rel="icon" type="image/x-icon" href="img/5855.jpg">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body onload="renderNotes()">
+    <header>
+        <div class="container">
+            <div class="subcontainer">
+                <nav class="navbar">
+                        <a href="index.html" class="nav-branding">.my notepad</a>
+                        <ul class="nav-menu">
+                            <li onclick="openHome()" class="nav-item">
+                                <a href="#" class="nav-link">.home</a>
+                            </li>
+                            <li onclick="openArchive()" class="nav-item">
+                                <a href="#" class="nav-link">.archive</a>
+                            </li>
+                            <li onclick="openTrash()" class="nav-item">
+                                <a href="#" class="nav-link">.trash</a>
+                            </li>
+                        </ul>
+                        <div class="hamburger">
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                        </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <main id="main-container" class="main-container">
+        <div class="note">
+            <div id="note-header" class="note-header display-none">
+                <textarea id="title" class="note-title" placeholder="Titel"></textarea>
+            </div>
+            <div class="note-input">
+                <textarea onclick="show()" id="note" class="note-note" placeholder="Notiz schreiben..."></textarea>
+            </div>
+            <div id="note-footer" class="note-footer display-none">
+                <button onclick="addNote()" id="footer" class="add-button">Notiz hinzufügen</button>
+            </div>
+        </div>
+    </main>
+
+    <div id="content" class="content"></div>
+    <div id="trash-onload" class="trash-onload">
+        <div id="korb" class="korb"></div>
+        <div id="trash" class="content"></div>
+    </div>
+    <div id="archive" class="content"></div>
+
+</body>
+
+<script src="script.js"></script>
+
+</html>

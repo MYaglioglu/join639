@@ -1,0 +1,55 @@
+body {
+    margin: 0;
+}
+
+.imgcontainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.imgbox {
+    margin: 5px;
+}
+
+.imgbox img {
+    object-fit: cover;
+    height: 200px;
+}
+
+.imgbox img:hover {
+    transform: scale(1.1);
+    transition: 125ms ease-in-out;
+    cursor: pointer;
+}
+
+.background {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* .d-none {
+    display: none;
+} */
+
+.slideshow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slideshow img {
+    max-width: 100%;
+    max-height: 96vh;
+    border-radius: 4px;
+}
+
+.arrow-left {
+    background-color: blue;
+}
+
+.arrow-right {
+    background-color: green;
+}
+
+img {
+    background-color: white;
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="img/Instagram_icon.png.webp">
+    <link rel="stylesheet" href="style.css">
+    <title>Instagram</title>
+
+</head>
+
+<body onload="render()">
+    <!-- ===> SIDEBAR LEFT <=== -->
+    <header class="header-mobile">
+        <div class="header-title">Instagram</div>
+        <div class="header-mobile-icons">
+            <input class="mobile-input" type="text" placeholder="Suchen">
+            <img class="menu-icon" title="Benachrichtigungen" src="img/favorite.png" alt="heart">
+        </div>
+    </header>
+
+    <div class="content">
+        <aside class="left-sidebar-container">
+            <div class="sidebar media-none">
+                <div class="sidebar-title hide-sidebar-name">Instagram</div>
+                <img class="title-icon display-bigScreen" title="Instagram" src="img/icons8-instagram-50.png"
+                    alt="insta">
+            </div>
+            <div class="sidebar-content">
+                <img class="menu-icon" title="Startseite" src="img/icons8-startseite-64.png" alt="home">
+                <div class="hide-sidebar-name">Startseite</div>
+            </div>
+            <div class="sidebar-content media-none">
+                <img class="menu-icon" title="Suche" src="img/icons8-search-50.png" alt="search">
+                <div class="hide-sidebar-name">Suche</div>
+            </div>
+            <div class="sidebar-content">
+                <img class="menu-icon" title="Entdecken" src="img/entdecken.png" alt="search">
+                <div class="hide-sidebar-name">Entdecken</div>
+            </div>
+            <div class="sidebar-content">
+                <img class="menu-icon" title="Reels" src="img/reels.png" alt="search">
+                <div class="hide-sidebar-name">Reels</div>
+            </div>
+            <div class="sidebar-content">
+                <img class="menu-icon" title="Nachrichten" src="img/nachrichten.png" alt="search">
+                <div class="hide-sidebar-name">Nachrichten</div>
+            </div>
+            <div class="sidebar-content media-none">
+                <img class="menu-icon" title="Benachrichtigungen" src="img/favorite.png" alt="heart">
+                <div class="hide-sidebar-name">Benachrichtigungen</div>
+            </div>
+            <div class="sidebar-content">
+                <img class="menu-icon" title="Erstellen" src="img/erstellen.png" alt="search">
+                <div class="hide-sidebar-name">Erstellen</div>
+            </div>
+            <div class="sidebar-content">
+                <img class="menu-icon" title="Profil" src="img/pexels-andrea-piacquadio-901236.jpg" alt="search">
+                <div class="hide-sidebar-name">Profil</div>
+            </div>
+        </aside>
+
+        <!-- ===> MAIN <=== -->
+        <main class="main-section">
+            <div id="maincontainer" class="maincontainer">
+                <div id="storys" class="storys"></div>
+                <div id="toast" class="toast">Dies ist ein Toast!</div>
+                <div id="postcontainer" class="postcontainer">
+                </div>
+            </div>
+
+            <!-- ===> SIDEBAR RIGHT <=== -->
+            <aside class="right-sidebar-container">
+                <div class="right-sidebar-top-section">
+                    <div class="profile-top-section">
+                        <div><img class="profile-top-section-image" src="img/pexels-andrea-piacquadio-901236.jpg"
+                                alt="">
+                        </div>
+                        <div>
+                            <div class="profile-font">dan191
+                            </div>
+                            <div class="profile-font-1">dan191</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="follow-btn"><b>Wechseln</b></p>
+                    </div>
+                </div>
+
+                <div class="right-sidebar-proposal-section">
+                    <div class="proposal-font">Vorschläge für dich
+                    </div>
+                    <div>
+                        <p class="proposal-btn"><b>Alle ansehen</b></p>
+                    </div>
+                </div>
+                
+                <div id="right-sidebar" class="right-sidebar-profiles-section">
+                </div>
+
+                <div class="infobox">
+                    Info Hilfe Presse API Jobs Datenrichtlinie <br>
+                    Nutzungsbedingungen und Impressum <br>
+                    NetzDG/UrhDaG/Ranking von Inhalten <br>
+                    Standorte Sprache Deutsch <br><br>
+                    © 2023 FINSTAGRAM FROM FETA
+                </div>
+            </aside>
+            
+        </main>
+    </div>
+    <script src="arrays.js"></script>
+    <script src="templates.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
