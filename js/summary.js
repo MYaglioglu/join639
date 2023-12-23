@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
   getGreeting('mobile-day-time');
 });
 
+
 /**
  * Displays the appropriate greeting based on the time of the day and user status.
- * 
  * @param {string} id - The ID of the HTML element where the greeting will be displayed.
  */
 function getGreeting(id) {
@@ -21,9 +21,9 @@ function getGreeting(id) {
   hideUserName(isGuest);
 }
 
+
 /**
  * Displays "Good morning" greeting during the morning hours.
- * 
  * @param {HTMLElement} dayTime - The HTML element where the greeting will be displayed.
  * @param {number} currentHour - The current hour of the day.
  * @param {boolean} isGuest - Indicates whether the user is a guest or not.
@@ -38,9 +38,9 @@ function morning(dayTime, currentHour, isGuest){
   }
 }
 
+
 /**
  * Displays "Good afternoon" greeting during the afternoon hours.
- * 
  * @param {HTMLElement} dayTime - The HTML element where the greeting will be displayed.
  * @param {number} currentHour - The current hour of the day.
  * @param {boolean} isGuest - Indicates whether the user is a guest or not.
@@ -55,9 +55,9 @@ function afternoon(dayTime, currentHour, isGuest){
   }
 }
 
+
 /**
  * Displays "Good evening" greeting during the evening hours.
- * 
  * @param {HTMLElement} dayTime - The HTML element where the greeting will be displayed.
  * @param {number} currentHour - The current hour of the day.
  * @param {boolean} isGuest - Indicates whether the user is a guest or not.
@@ -70,6 +70,7 @@ function evening(dayTime, currentHour, isGuest){
       dayTime.innerHTML = "Good evening, ";
   }
 }
+
 
 /**
  * Toggles the active class for mobile greetings and containers based on window width.
@@ -94,24 +95,24 @@ toggleActiveClass();
 
 window.addEventListener('resize', toggleActiveClass);
 
+
 /**
  * Retrieves the username of the logged-in user from local storage.
- * 
  * @returns {string} The username of the logged-in user, or an empty string if not available.
  */
 function getLoggedInUserName() {
   let userData = JSON.parse(localStorage.getItem('loggedInUser'));
 
-  if (userData && userData.username) {
-    return userData.username;
+  if (userData && userData.name) {
+    return `${userData.name} ${userData.surname || ''}`;
   } else {
     return '';
   }
 }
 
+
 /**
  * Checks if the current user is a guest (not logged in).
- * 
  * @returns {boolean} True if the user is a guest, otherwise false.
  */
 function isGuestUser() {
@@ -119,9 +120,9 @@ function isGuestUser() {
   return !userName;
 }
 
+
 /**
  * Displays the user's name in the appropriate elements if they are logged in.
- * 
  * @param {boolean} isGuest - Indicates whether the user is a guest or not.
  */
 function showGreeting(isGuest) {
@@ -139,9 +140,9 @@ function showGreeting(isGuest) {
   }
 }
 
+
 /**
  * Hides or shows the user's name based on their guest status.
- * 
  * @param {boolean} isGuest - Indicates whether the user is a guest or not.
  */
 function hideUserName(isGuest) { 
@@ -155,4 +156,3 @@ function hideUserName(isGuest) {
     userMobile.classList.remove('d-none');
   }  
 }
-

@@ -5,18 +5,16 @@ let isChecked = false;
  * Initializes the registration process by loading user data.
  */
 async function initRegister() {
-    await loadUsers();
+    await loadAllContacts();
 }
 
 
 /**
- * Loads users from storage
- * @returns {Promise<void>} - A promise that resolves once the user data is loaded.
+ * 
  */
-async function loadUsers() {
+async function loadAllContacts() {
     try {
-        users = JSON.parse(await getItem('users'));
-        console.log('Users:', users);
+        contacts = JSON.parse(await getItem('contacts'));
     } catch (e) {
         console.error('Loading error:', e);
     }
@@ -33,25 +31,21 @@ document.getElementById('signUpForm').addEventListener('submit', function (event
 
 
 /**
- * Handles the user sign-up process. Validates the provided inputs, registers the user if inputs are valid,
- * and displays relevant error messages if needed.
- * @returns {Promise<void>} - A Promise that resolves once the user registration process is completed.
+ * Registers a new user.
+ * @throws {Error} An error if the registration fails.
  */
 async function signUpUser() {
-    let username = document.getElementById('username').value;
-    let initials = extractInitials(username);
-    let passWord = getPasswordInputValue();
-    let confirmPassword = getConfirmPasswordInputValue();
+    const username = document.getElementById('username').value;
+    const passWord = getPasswordInputValue();
+    const confirmPassword = getConfirmPasswordInputValue();
+    const emailValue = email.value;
 
     resetSignUpFormStyle();
 
-    if (passWord !== confirmPassword) {
-        showPasswordMatchError();
-        shakePasswordInput();
+    if (!validatePasswordMatch(passWord, confirmPassword)) {
         return;
     }
 
-    let emailValue = email.value;
     if (isEmailAlreadyRegistered(emailValue)) {
         showEmailAlreadyRegisteredError();
         return;
@@ -60,15 +54,28 @@ async function signUpUser() {
     if (!isChecked) {
         return;
     }
-    users.push({
-        username: username,
-        email: emailValue,
-        password: password.value,
-        initials: initials
-    });
-    await setItem('users', JSON.stringify(users));
-    showSuccessMessageAndRedirect();
-    resetForm();
+
+    if (!isValidUsername(username)) {
+        return;
+    }
+
+    let newContact = createNewContact(username, emailValue, passWord);
+    registerContact(newContact);
+}
+
+
+/**
+ * Validates whether the entered passwords match.
+ * @param {string} password - The password entered by the user.
+ * @param {string} confirmPassword - The confirmation of the entered password.
+ */
+function validatePasswordMatch(password, confirmPassword) {
+    if (password !== confirmPassword) {
+        showPasswordMatchError();
+        shakePasswordInput();
+        return false;
+    }
+    return true;
 }
 
 
@@ -78,68 +85,64 @@ async function signUpUser() {
  * @returns {boolean} - Returns true if the email is already registered, false otherwise.
  */
 function isEmailAlreadyRegistered(email) {
-    return users.find(user => user.email === email);
+    return contacts.find(contact => contact.email === email);
 }
 
 
 /**
- * This function extracts initials from a username.
- * @param {string} username - The username from which initials are extracted.
- * @returns {string} - The extracted initials in uppercase letters.
+ * Tests if the username adheres to the specified format.
+ * @param {string} username - The username to be validated.
+ * @returns {boolean} Returns true if the username is in a valid format, false otherwise.
  */
-function extractInitials(username) {
-    let nameParts = username.trim().split(' ');
-    let initials = '';
-
-    for (let i = 0; i < nameParts.length; i++) {
-        let part = nameParts[i];
-        if (part) {
-            initials += part.charAt(0).toUpperCase();
-        }
-    }
-    return initials;
+function isValidUsername(username) {
+    return /^[a-zA-Z][^0-9!@#$%^&*(),.?":{}|<>']*$/.test(username);
 }
 
 
-// async function signUpUser() {
-//     let username = document.getElementById('username').value;
-//     let initials = extractInitials(username);
-//     let passWord = getPasswordInputValue();
-//     let confirmPassword = getConfirmPasswordInputValue();
+/**
+ * Creates a new contact object based on provided information.
+ * @param {string} username - The username or full name of the contact.
+ * @param {string} email - The email address of the contact.
+ * @param {string} password - The password associated with the contact.
+ * @returns {Object} Returns a new contact object.
+ */
+function createNewContact(username, email, password) {
+    let maxContactId = Math.max(...contacts.map(contact => contact.id), -1);
+    let nextContactId = maxContactId + 1;
+    let { newName, newsurname } = extractNameParts(username);
 
-//     resetSignUpFormStyle();
-
-//     if (passWord !== confirmPassword) {
-//         showPasswordMatchError();
-//         shakePasswordInput();
-//         return;
-//     }
-
-//     let emailValue = email.value;
-//     if (isEmailAlreadyRegistered(emailValue) || !isChecked) {
-//         if (isEmailAlreadyRegistered(emailValue)) {
-//             showEmailAlreadyRegisteredError();
-//         }
-//         return;
-//     }
-//     const user = createUserObject(username, emailValue, passWord, initials);
-//     await saveUserToBackend(user);
-
-//     showSuccessMessageAndRedirect();
-//     resetForm();
-// }
+    return {
+        bgcolor: getRandomColor(),
+        id: nextContactId,
+        name: newName,
+        surname: newsurname,
+        email,
+        telefon: '',
+        password,
+    };
+}
 
 
-// function createUserObject(username, email, password, initials) {
-//     return {
-//         username: username,
-//         email: email,
-//         password: password,
-//         initials: initials
-//     };
-// }
+/**
+ * Extracts the first and last name parts from a full name.
+ * @param {string} username - The full name to extract parts from.
+ * @returns {Object} Returns an object with the properties `newName` and `newsurname`.
+ */
+function extractNameParts(username) {
+    let nameParts = username.trim().split(' ');
+    let newName = nameParts[0];
+    let newsurname = nameParts[1] || '';
+    return { newName, newsurname };
+}
 
-// async function saveUserToBackend(user) {
-//     users.push(user);
-//     await setItem('users', JSON.stringify(users));
-// }
+
+/**
+ * Registers a new contact, updates the storage, and performs related actions.
+ * @param {Object} newContact - The contact object to be registered.
+ */
+async function registerContact(newContact) {
+    contacts.push(newContact);
+    await setItem('contacts', JSON.stringify(contacts));
+    showSuccessMessageAndRedirect();
+    resetForm();
+}

@@ -5,24 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
-    <link rel="stylesheet" href="./css/contact.css">
-    <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/contact.css">
+    <link rel="stylesheet" href="./css/contact2.css">
+    <link rel="stylesheet" href="./css/contact3.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/aside.css">
     <link rel="stylesheet" href="./css/fonts.css">
     <link rel="icon" type="image/png" href="./img/join_logo_blue.png">
     <script src="./js/app.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./js/contact_templates.js"></script>
     <script src="./js/contact.js"></script>
+    <script src="./js/contactEdit.js"></script>
+    <script src="./js/contactMobile.js"></script>
     <script src="./js/storage.js"></script>
-    <script src="./js/templates/contact_templates.js"></script>
+    <script src="./js/templates/contactTemplates.js"></script>
 </head>
 
 <body onload="init(), initContact()">
     <div w3-include-html="./templates/header.html"></div>
     <div w3-include-html="./templates/aside.html"></div>
 
-    <div class="background-overlay"></div>
     <div class="all-content">
         <div class="container">
             <button id="addContactBtn" onclick="openModal()" class="add-person-button">
@@ -35,25 +38,21 @@
             </div>
         </div>
         <div id="contact-details" class="contact-details">
-            <!-- Hier werden die Kontaktinformationen angezeigt -->
         </div>
     </div>
-    
-    <!-- Hier der Screen um ein Contact einzufügen -->
-    <div id="contactModal" class="modal"></div>
 
-    <div id="editModal" class="edit-modal"></div>
-    <div id="editMobileModal" class="edit-Modal-Mobile"></div>
+    <form id="contactModal" onclick="closeModalBackAddContact(event)" class="modal" onsubmit="saveNewContact(); return false;"></form>
+    <form id="editModal" onclick="closeModalBackEditContact(event)" class="edit-modal"></form>
+    <div class="background-overlay"></div>
 
-    <!-- Container für die Kontaktliste -->
     <div id="contact-list-container"></div>
 
-    <!-- Container für die Kontaktinformationen (Mobile) -->
     <div id="contact-details-mobile" class="contact-details-mobile-class" style="display:none;"></div>
+    <div id="contactAddedContainer" class="contact-added"></div>
 
 
     <script src="./js/includeHTML.js"></script>
-    <script src="./js/ui_helpers.js"></script>
+    <script src="./js/uiHelpers.js"></script>
 </body>
 
 </html>
